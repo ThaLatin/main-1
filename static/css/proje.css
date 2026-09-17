@@ -1,0 +1,834 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background-color: rgb(14, 22, 37);
+    overflow-x: hidden;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.head {
+    width: 100%;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 30px;
+}
+
+header > a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+}
+
+nav a:hover {
+    color: rgb(12, 236, 218);
+    transition: 0.5s;
+    text-decoration: underline;
+}
+
+header button {
+    padding: 10px 14px;
+    background-color: rgb(25, 34, 51);
+    border: 1px solid white;
+    border-radius: 6px;
+}
+
+header button:hover {
+    background-color: rgb(12, 236, 218);
+    transition: 0.5s;
+}
+
+header button a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+}
+
+
+/* =========================
+   PAGE INTRO
+========================= */
+
+.container7 {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 0 20px;
+}
+
+.container7 .mainb {
+    display: block;
+    margin: 30px auto 10px;
+
+    background-color: rgb(78, 76, 76);
+    border: 1px solid white;
+    padding: 8px 14px;
+
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    color: white;
+
+    border-radius: 4px;
+}
+
+.container7 h1 {
+    text-align: center;
+    color: white;
+
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 40px;
+    font-weight: bold;
+
+    margin: 5px 0;
+}
+
+.container7 .mainp {
+    text-align: center;
+    color: white;
+
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+
+    margin: 0 0 25px;
+}
+
+
+/* =========================
+   PROJECT CARDS
+========================= */
+
+.container8 {
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+
+    width: 100%;
+    max-width: 1050px;
+
+    margin: 0 auto;
+}
+
+.cards {
+    background-color: rgb(78, 76, 76);
+
+    padding: 12px;
+    border-radius: 6px;
+
+    margin: 0;
+
+    min-width: 0;
+}
+
+.design {
+    width: 100%;
+}
+
+.cards img {
+    display: block;
+
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+
+    margin: 0 auto;
+
+    border-radius: 4px;
+}
+
+.cards h4 {
+    color: white;
+
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+
+    margin: 12px 0 5px;
+}
+
+.cards p {
+    color: white;
+
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+
+    line-height: 1.4;
+
+    margin: 0 0 15px;
+}
+
+
+/* Remove forced <br> effects on smaller screens */
+
+.cards p br {
+    display: none;
+}
+
+
+/* =========================
+   PROJECT BUTTONS
+========================= */
+
+.cards button {
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.ad {
+    background-color: rgb(78, 76, 76);
+
+    border: 1px solid white;
+    padding: 8px 12px;
+
+    border-radius: 4px;
+}
+
+.ad:hover {
+    background-color: rgb(6, 245, 165);
+    border: none;
+
+    transition: 0.5s;
+}
+
+.and {
+    background-color: rgb(6, 245, 165);
+
+    border: none;
+    padding: 8px 12px;
+
+    border-radius: 4px;
+}
+
+.and:hover {
+    background-color: rgb(78, 76, 76);
+
+    border: 1px solid white;
+
+    transition: 0.5s;
+}
+
+.cards button a {
+    text-decoration: none;
+    text-align: center;
+    color: white;
+}
+
+
+/* =========================
+   SECOND SECTION TITLE
+========================= */
+
+.container7 .other {
+    color: white;
+
+    text-align: center;
+
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 36px;
+
+    margin: 35px 0 25px;
+}
+
+
+/* =========================
+   BUILD / CTA SECTION
+========================= */
+
+.build {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 30px;
+
+    width: 90%;
+    max-width: 1050px;
+
+    margin: 40px auto;
+
+    background-color: rgb(25, 34, 51);
+
+    padding: 15px 20px;
+
+    border-radius: 8px;
+    border: 1px solid wheat;
+}
+
+.mind {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    min-width: 0;
+}
+
+.mind img {
+    width: 70px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+.mind strong {
+    color: white;
+
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+}
+
+.mind p {
+    color: white;
+
+    text-align: left;
+
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 17px;
+
+    margin: 0;
+}
+
+.build > button {
+    background-color: rgb(6, 245, 165);
+
+    border: none;
+    border-radius: 8px;
+
+    padding: 10px 15px;
+
+    flex-shrink: 0;
+}
+
+.build button a {
+    color: white;
+    text-decoration: none;
+}
+
+
+/* =========================
+   BOTTOM CARDS
+========================= */
+
+.last {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 30px;
+
+    width: 90%;
+    max-width: 1050px;
+
+    margin: 0 auto;
+
+    padding: 20px 0 40px;
+}
+
+.latest,
+.connect {
+    width: 100%;
+    min-width: 0;
+
+    border-radius: 8px;
+}
+
+
+/* Latest */
+
+.latest {
+    background-color: rgb(255, 254, 254);
+
+    padding: 15px 20px;
+}
+
+.latest button {
+    background-color: gray;
+
+    border: none;
+    padding: 8px;
+
+    border-radius: 4px;
+}
+
+.latest button a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+}
+
+.latest h4 {
+    font-family: 'Times New Roman', Times, serif;
+
+    font-size: 32px;
+
+    color: black;
+
+    margin: 12px 0 5px;
+}
+
+.latest strong {
+    font-family: 'Times New Roman', Times, serif;
+
+    font-size: 16px;
+
+    color: white;
+}
+
+.latest p {
+    background-color: rgb(1, 1, 26);
+
+    padding: 10px;
+
+    border-radius: 4px;
+
+    color: white;
+
+    line-height: 1.5;
+}
+
+
+/* Connect */
+
+.connect {
+    background-color: rgb(0, 0, 19);
+
+    padding: 15px 20px;
+}
+
+.connect button {
+    background-color: gray;
+
+    border: none;
+    padding: 8px;
+
+    border-radius: 4px;
+}
+
+.connect button a {
+    text-decoration: none;
+
+    color: white;
+
+    font-size: 16px;
+}
+
+.connect h4 {
+    font-family: 'Times New Roman', Times, serif;
+
+    font-size: 32px;
+
+    color: white;
+
+    margin: 12px 0;
+}
+
+.connect form {
+    display: flex;
+
+    gap: 10px;
+
+    width: 100%;
+}
+
+.email {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 10px;
+
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+    outline: none;
+}
+
+.click {
+    padding: 10px 20px;
+
+    background-color: #0dd381;
+
+    color: white;
+
+    border: none;
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+.click:hover {
+    background-color: #3c4044;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background-color: rgb(0, 0, 19);
+
+    padding: 25px 5%;
+}
+
+.lastfoot {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+
+    flex-wrap: wrap;
+}
+
+.social {
+    display: flex;
+
+    gap: 15px;
+}
+
+.social a {
+    text-decoration: none;
+    color: white;
+}
+
+.social a:hover {
+    color: aquamarine;
+}
+
+.copy p {
+    color: white;
+
+    font-family: 'Times New Roman', Times, serif;
+
+    font-size: 18px;
+
+    text-align: left;
+}
+
+footer p {
+    text-align: center;
+
+    color: aliceblue;
+}
+
+footer p a {
+    text-decoration: none;
+
+    color: aliceblue;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 768px) {
+
+    /* Header */
+
+    header {
+        flex-direction: column;
+
+        padding: 20px 15px;
+
+        gap: 20px;
+    }
+
+    header > a {
+        font-size: 34px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+
+        gap: 12px 20px;
+    }
+
+    nav a {
+        font-size: 16px;
+    }
+
+
+    /* Page title */
+
+    .container7 {
+        padding: 0 15px;
+    }
+
+    .container7 h1 {
+        font-size: 34px;
+    }
+
+    .container7 .mainp {
+        font-size: 16px;
+
+        line-height: 1.5;
+    }
+
+
+    /* Project cards */
+
+    .container8 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        width: 95%;
+    }
+
+    .cards h4 {
+        font-size: 22px;
+    }
+
+    .cards p {
+        font-size: 16px;
+    }
+
+
+    /* Section heading */
+
+    .container7 .other {
+        font-size: 30px;
+    }
+
+
+    /* Build section */
+
+    .build {
+        width: 90%;
+
+        flex-direction: column;
+
+        text-align: center;
+
+        gap: 15px;
+    }
+
+    .mind {
+        justify-content: center;
+    }
+
+    .mind p {
+        text-align: left;
+    }
+
+    .build > button {
+        width: 100%;
+    }
+
+
+    /* Bottom section */
+
+    .last {
+        grid-template-columns: 1fr;
+
+        width: 90%;
+    }
+
+    .latest,
+    .connect {
+        width: 100%;
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 500px) {
+
+    /* Header */
+
+    header {
+        padding: 15px 10px;
+    }
+
+    header > a {
+        font-size: 30px;
+    }
+
+    nav ul {
+        gap: 10px 14px;
+    }
+
+    nav a {
+        font-size: 14px;
+    }
+
+    header button {
+        padding: 9px 12px;
+    }
+
+    header button a {
+        font-size: 14px;
+    }
+
+
+    /* Main heading */
+
+    .container7 .mainb {
+        margin-top: 20px;
+    }
+
+    .container7 h1 {
+        font-size: 29px;
+    }
+
+    .container7 .mainp {
+        font-size: 14px;
+    }
+
+
+    /* Cards become one column */
+
+    .container8 {
+        grid-template-columns: 1fr;
+
+        width: 94%;
+
+        gap: 15px;
+    }
+
+    .cards {
+        width: 100%;
+    }
+
+    .cards img {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .cards h4 {
+        font-size: 22px;
+    }
+
+    .cards p {
+        font-size: 15px;
+    }
+
+    .cards button {
+        padding: 8px 10px;
+    }
+
+
+    /* Other projects heading */
+
+    .container7 .other {
+        font-size: 26px;
+
+        line-height: 1.3;
+    }
+
+
+    /* Build section */
+
+    .build {
+        width: 94%;
+
+        padding: 15px;
+
+        margin-top: 30px;
+    }
+
+    .mind {
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    .mind img {
+        width: 60px;
+    }
+
+    .mind p {
+        text-align: center;
+
+        font-size: 15px;
+    }
+
+    .mind strong {
+        font-size: 18px;
+    }
+
+
+    /* Bottom cards */
+
+    .last {
+        width: 94%;
+
+        padding-top: 20px;
+    }
+
+    .latest,
+    .connect {
+        padding: 15px;
+    }
+
+    .latest h4,
+    .connect h4 {
+        font-size: 26px;
+    }
+
+    .connect form {
+        flex-direction: column;
+    }
+
+    .email {
+        width: 100%;
+    }
+
+    .click {
+        width: 100%;
+    }
+
+
+    /* Footer */
+
+    .lastfoot {
+        flex-direction: column;
+
+        justify-content: center;
+
+        text-align: center;
+    }
+
+    .copy p {
+        text-align: center;
+
+        font-size: 14px;
+    }
+}

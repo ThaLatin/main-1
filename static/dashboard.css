@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 30px;
+    background: #f4f6f8;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header a {
+    text-decoration: none;
+}
+
+.message {
+    background: white;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+
+.message-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.edit-button {
+    text-decoration: none;
+}
+
+.delete-button {
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 15px;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .message {
+        padding: 15px;
+    }
+
+    .message-actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+.flash-message {
+    color: red;
+    background: #ffe5e5;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}

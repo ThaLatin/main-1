@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+<body>
+
+    <header>
+        {% with flash_messages = get_flashed_messages() %}
+        {% if flash_messages %}
+          {% for message in flash_messages %}
+            <p class="flash-message">{{ message }}</p>
+          {% endfor %}
+        {% endif %}
+       {% endwith %}
+        <h1>Admin Dashboard</h1>
+
+        <p>Welcome, {{ session["username"] }}!</p>
+
+        <p>Total messages: {{ messages|length }}</p>
+
+        <a href="/logout">Logout</a>
+    </header>
+
+    <hr>
+
+    <h2>Contact Messages</h2>
+
+    {% for message in messages %}
+        <div>
+            <h3>{{ message["subject"] }}</h3>
+
+            <p>
+                <strong>Name:</strong>
+                {{ message["name"] }}
+            </p>
+
+            <p>
+                <strong>Email:</strong>
+                {{ message["email"] }}
+            </p>
+
+            <p>
+                <strong>Message:</strong>
+                {{ message["message"] }}
+            </p>
+
+            <div class="message-actions">
+                <a class="edit-button" href="/edit-message/{{ message['id'] }}">
+                      Edit
+                </a>
+
+                <form action="/delete-message/{{ message['id'] }}" method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button class="delete-button" type="submit">
+                      Delete
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <hr>
+
+    {% endfor %}
+
+</body>
+</html>

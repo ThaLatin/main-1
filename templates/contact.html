@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profolio_projects</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/com.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+     <div class="head">
+        <header>
+            <a href="{{ url_for('home') }}">Cyrus</a>
+
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('about')}}">About</a></li>
+                    <li><a href="{{ url_for('project') }}">Projects</a></li>
+                    <li><a href="{{ url_for('skills') }}">Skills</a></li>
+                    <li><a href="{{ url_for('contact_page') }}">Contact</a></li>
+                </ul>
+            </nav>
+
+            <a class="header-button" href="{{ url_for('contact_page') }}">Get In Touch</a>
+        </header>
+        
+    </div>
+
+    <div class="container7">
+
+        <button class="mainb">Contact</button>
+        
+        <h1>Let's Connect</h1>
+        <p class="mainp">Have a project in mind or want to collaborate?<br>
+        Feel free to reach out.</p>
+
+    </div>
+
+    <section class="contact-section">
+
+    
+    <div class="contact-card contact-form">
+
+        <h2>Get In Touch</h2>
+
+        <form action="http://127.0.0.1:5000/contact" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                required
+            >
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                required
+            >
+
+            <input
+                type="text"
+                name="subject"
+                placeholder="Subject"
+            >
+
+            <textarea
+                name="message"
+                placeholder="Message"
+                rows="5"
+            ></textarea>
+
+            <button type="submit">
+                Send Message
+                <span>➤</span>
+            </button>
+
+        </form>
+
+    </div>
+
+
+    
+    <div class="contact-card contact-info">
+
+        <h2>Contact Info</h2>
+
+        
+        <div class="contact-item">
+
+            <div class="contact-icon">
+                ✉
+            </div>
+
+            <div class="contact-details">
+                <h3>Email</h3>
+                <p>duocyrus1@gmail.com</p>
+            </div>
+
+        </div>
+
+
+        
+        <div class="contact-item">
+
+            <div class="contact-icon">
+                ☎
+            </div>
+
+            <div class="contact-details">
+                <h3>WhatsApp</h3>
+                <P><a href="https://wa.me/231778158152?text=Hello%2C%20you%20found%20my%20website!">+231778158152</a></P>
+            </div>
+
+        </div>
+
+
+        
+        <div class="contact-item">
+
+            <div class="contact-icon">
+                📍
+            </div>
+
+            <div class="contact-details">
+                <h3>Location</h3>
+                <p>Ludhiaha Punjab,India </p>
+            </div>
+
+        </div>
+
+
+        
+        <div class="contact-item connect">
+
+            <div class="contact-icon">
+                🔗
+            </div>
+
+            <div class="contact-details">
+
+                <h3>Connect</h3>
+
+                <div class="social-links">
+                <a href=""><i class="fa-brands fa-github"></i></a>
+                <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/cyrusduojr?stkn=MW1mN28wZ2hpNjQycA%3D%3D&utm_source=qr"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://youtube.com/@cyrusduo4998?si=5wciKP4yhQs4KlPI"><i class="fa-brands fa-youtube"></i></a>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+    <div class="reply">
+        <p><Strong>I usually reply to messages in 24 hours</Strong>
+        <br> Looking forward to hearing from you!</p>
+    </div>
+
+    <footer>
+        <div class="lastfoot">
+            <div class="copy">
+                <p>&copy; 2026 Cyrus Elvis Duo. All rights reserved.</p>
+            </div>
+            
+            <div class="social">
+                <a href=""><i class="fa-brands fa-github"></i></a>
+                <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/cyrusduojr?stkn=MW1mN28wZ2hpNjQycA%3D%3D&utm_source=qr"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://youtube.com/@cyrusduo4998?si=5wciKP4yhQs4KlPI"><i class="fa-brands fa-youtube"></i></a>
+
+            </div>
+        </div> 
+
+        <p>Power By: <a href="primecode.html">PrimeCode</a></p>
+    </footer>
+</body>
+</html>

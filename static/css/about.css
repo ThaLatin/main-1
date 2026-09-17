@@ -1,0 +1,759 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background-color: rgb(14, 22, 37);
+    overflow-x: hidden;
+}
+
+.head {
+    width: 100%;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 30px;
+}
+
+header > a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+}
+
+nav a:hover {
+    color: rgb(12, 236, 218);
+    transition: 0.5s;
+    text-decoration: underline;
+}
+
+header button {
+    padding: 10px 14px;
+    background-color: rgb(25, 34, 51);
+    border: 1px solid white;
+    border-radius: 6px;
+}
+
+header button:hover {
+    background-color: rgb(12, 236, 218);
+    transition: 0.5s;
+}
+
+header button a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+}
+
+.about {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+    width: 90%;
+    max-width: 1100px;
+    margin: 50px auto;
+}
+
+.aboutmain {
+    flex: 1;
+    min-width: 0;
+}
+
+.aboutmain > button {
+    background-color: rgb(25, 25, 52);
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    color: white;
+    border-radius: 3px;
+    border: 1px solid #303d52;
+    padding: 8px 14px;
+}
+
+.aboutmain h1 {
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 50px;
+    text-align: left;
+    margin: 10px 0 5px;
+}
+
+.ab1 {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 21px;
+    text-align: left;
+    margin: 0 0 15px;
+    line-height: 1.5;
+}
+
+.ab2 {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    text-align: left;
+    margin: 0;
+    line-height: 1.7;
+}
+
+.about > img {
+    width: 380px;
+    max-width: 40%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.sub {
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.subcard {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgb(25, 34, 51);
+    padding: 10px;
+    border-radius: 6px;
+    min-width: 180px;
+}
+
+.subcard img {
+    width: 60px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.subcard strong {
+    color: white;
+    font-size: 25px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.subcard p {
+    color: white;
+    margin: 0;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 60px auto;
+}
+
+.container h2 {
+    text-align: center;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 40px;
+    margin-bottom: 30px;
+}
+
+.mainabout {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+}
+
+.main2 {
+    min-width: 0;
+}
+
+.maincard {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: rgb(25, 34, 51);
+    padding: 15px;
+    border-radius: 8px;
+    height: 100%;
+}
+
+.maincard img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.maincard strong {
+    color: white;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.maincard p {
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.container7 {
+    background-color: rgb(226, 220, 220);
+    padding: 35px 20px 40px;
+    width: 100%;
+}
+
+.container7 h2 {
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 40px;
+    margin: 0 0 30px;
+    color: rgb(14, 22, 37);
+}
+
+.container8 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    width: 90%;
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+.cards {
+    background-color: rgb(78, 76, 76);
+    padding: 12px;
+    border-radius: 6px;
+    min-width: 0;
+}
+
+.cards img {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 4px;
+}
+
+.cards h4 {
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+    margin: 12px 0 5px;
+}
+
+.cards p {
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 17px;
+    line-height: 1.5;
+    margin: 0 0 15px;
+}
+
+
+.cards p br {
+    display: none;
+}
+
+.ad {
+    background-color: rgb(78, 76, 76);
+    border: 1px solid white;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+.ad:hover {
+    background-color: rgb(6, 245, 165);
+    border-color: rgb(6, 245, 165);
+    transition: 0.5s;
+}
+
+.and {
+    background-color: rgb(6, 245, 165);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+.and:hover {
+    background-color: rgb(78, 76, 76);
+    border: 1px solid white;
+    transition: 0.5s;
+}
+
+.cards button {
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.cards button a {
+    text-decoration: none;
+    text-align: center;
+    color: white;
+}
+
+.last {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px;
+    width: 90%;
+    max-width: 1050px;
+    margin: 40px auto;
+    padding: 0;
+}
+
+.latest {
+    background-color: rgb(255, 254, 254);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.latest button {
+    background-color: gray;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+.latest button a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+}
+
+.latest h4 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 32px;
+    color: black;
+    margin: 15px 0 8px;
+}
+
+.latest strong {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    color: white;
+}
+
+.latest p {
+    background-color: rgb(1, 1, 26);
+    padding: 10px;
+    border-radius: 4px;
+    color: white;
+    line-height: 1.5;
+}
+
+.connect {
+    background-color: rgb(0, 0, 19);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.connect button {
+    background-color: gray;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+.connect button a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+}
+
+.connect h4 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 32px;
+    color: white;
+    margin: 15px 0;
+}
+
+.connect form {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.email {
+    flex: 1;
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.click {
+    padding: 10px 20px;
+    background-color: #0dd381;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.click:hover {
+    background-color: #3c4044;
+}
+
+footer {
+    background-color: rgb(0, 0, 19);
+    padding: 25px 5%;
+}
+
+.lastfoot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.social {
+    display: flex;
+    gap: 15px;
+}
+
+.social a {
+    text-decoration: none;
+    color: white;
+}
+
+.social a:hover {
+    color: aquamarine;
+}
+
+.copy p {
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    text-align: left;
+}
+
+footer p {
+    text-align: center;
+    color: aliceblue;
+}
+
+footer p a {
+    text-decoration: none;
+    color: aliceblue;
+}
+
+@media (max-width: 900px) {
+
+    header {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px 15px;
+    }
+
+    header > a {
+        font-size: 34px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        gap: 12px 20px;
+    }
+
+    nav a {
+        font-size: 16px;
+    }
+
+    .about {
+        width: 90%;
+        gap: 30px;
+    }
+
+    .aboutmain h1 {
+        font-size: 40px;
+    }
+
+    .ab1 {
+        font-size: 18px;
+    }
+
+    .ab2 {
+        font-size: 16px;
+    }
+
+    .about > img {
+        width: 300px;
+        max-width: 38%;
+    }
+
+    .mainabout {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .container8 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .last {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    header {
+        padding: 15px 10px;
+    }
+
+    header > a {
+        font-size: 30px;
+    }
+
+    nav ul {
+        gap: 10px 14px;
+    }
+
+    nav a {
+        font-size: 14px;
+    }
+
+    header button {
+        padding: 9px 12px;
+    }
+
+    header button a {
+        font-size: 14px;
+    }
+
+    .about {
+        flex-direction: column;
+        align-items: center;
+        width: 94%;
+        margin: 35px auto;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .aboutmain {
+        width: 100%;
+    }
+
+    .aboutmain > button {
+        font-size: 14px;
+    }
+
+    .aboutmain h1 {
+        font-size: 34px;
+        text-align: center;
+    }
+
+    .ab1 {
+        font-size: 17px;
+        text-align: center;
+        line-height: 1.5;
+    }
+
+    .ab2 {
+        font-size: 15px;
+        text-align: center;
+        line-height: 1.7;
+    }
+
+    .ab2 br {
+        display: none;
+    }
+
+    .about > img {
+        width: 220px;
+        max-width: 70%;
+        border-radius: 10px;
+    }
+
+    .sub {
+        justify-content: center;
+    }
+
+    .subcard {
+        min-width: 0;
+        width: 100%;
+        max-width: 260px;
+        justify-content: flex-start;
+    }
+
+    .container {
+        width: 94%;
+        margin: 40px auto;
+    }
+
+    .container h2 {
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
+
+    .mainabout {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .maincard {
+        padding: 15px;
+    }
+
+    .maincard img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .container7 {
+        padding: 30px 10px;
+    }
+
+    .container7 h2 {
+        font-size: 30px;
+        line-height: 1.3;
+    }
+
+    .container8 {
+        grid-template-columns: 1fr;
+        width: 94%;
+        gap: 15px;
+    }
+
+    .cards {
+        width: 100%;
+    }
+
+    .cards img {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .cards h4 {
+        font-size: 22px;
+    }
+
+    .cards p {
+        font-size: 15px;
+    }
+
+    .last {
+        grid-template-columns: 1fr;
+        width: 94%;
+        gap: 20px;
+        margin: 30px auto;
+    }
+
+    .latest,
+    .connect {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .latest h4,
+    .connect h4 {
+        font-size: 26px;
+    }
+
+
+    /* Email form */
+
+    .connect form {
+        flex-direction: column;
+    }
+
+    .email {
+        width: 100%;
+    }
+
+    .click {
+        width: 100%;
+    }
+
+    .lastfoot {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .copy p {
+        text-align: center;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    header > a {
+        font-size: 28px;
+    }
+
+    nav ul {
+        gap: 8px 12px;
+    }
+
+    nav a {
+        font-size: 13px;
+    }
+
+    .aboutmain h1 {
+        font-size: 30px;
+    }
+
+    .ab1 {
+        font-size: 15px;
+    }
+
+    .ab2 {
+        font-size: 14px;
+    }
+
+    .about > img {
+        width: 190px;
+    }
+
+    .subcard strong {
+        font-size: 22px;
+    }
+
+    .container h2,
+    .container7 h2 {
+        font-size: 27px;
+    }
+
+    .cards button {
+        padding: 7px 9px;
+    }
+
+    .latest h4,
+    .connect h4 {
+        font-size: 23px;
+    }
+}

@@ -1,0 +1,462 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background-color: rgb(14, 22, 37);
+    overflow-x: hidden;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.head {
+    width: 100%;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 30px;
+    gap: 20px;
+}
+
+header > a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+}
+
+nav a:hover {
+    color: rgb(12, 236, 218);
+    transition: all 0.5s ease;
+    text-decoration: underline;
+}
+
+header button {
+    padding: 10px 14px;
+    background-color: rgb(25, 34, 51);
+    border: 1px solid white;
+    border-radius: 6px;
+}
+
+header button:hover {
+    background-color: rgb(12, 236, 218);
+    transition: 0.5s;
+}
+
+header button a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+}
+
+/* =========================
+   PAGE INTRO
+========================= */
+
+.skillsbtn {
+    display: block;
+    margin: 35px auto 10px;
+
+    background-color: rgb(25, 25, 52);
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    color: white;
+    border-radius: 3px;
+    border: 1px solid white;
+    padding: 8px 14px;
+}
+
+h1 {
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 50px;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+body > p {
+    text-align: center;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    margin: 0 15px 35px;
+}
+
+/* =========================
+   SKILLS SECTION
+========================= */
+
+.skillslog {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    align-items: stretch;
+
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto 40px;
+}
+
+.skillslog h3 {
+    color: white;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.skillslog span {
+    color: white;
+}
+
+.technical,
+.tools {
+    background-color: #27344a;
+    padding: 25px;
+    border-radius: 8px;
+    width: 50%;
+}
+
+/* =========================
+   SKILL BARS
+========================= */
+
+.skill {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto 15px;
+}
+
+.skill-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    margin-top: 8px;
+
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+
+.progress {
+    width: 100%;
+    height: 10px;
+    background: rgb(25, 25, 52);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: rgb(12, 236, 218);
+    border-radius: 10px;
+}
+
+/* Skill percentages */
+
+.html {
+    width: 85%;
+}
+
+.css {
+    width: 75%;
+}
+
+.Javascript {
+    width: 25%;
+}
+
+.python {
+    width: 10%;
+}
+
+.react {
+    width: 1%;
+}
+
+.UIdesign {
+    width: 30%;
+}
+
+.Machine {
+    width: 2%;
+}
+
+/* =========================
+   TOOLS
+========================= */
+
+.tools-grid {
+    display: grid;
+
+    /* Automatically adjusts number of columns */
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+
+    gap: 20px;
+    align-items: center;
+    justify-items: center;
+}
+
+.tools-grid img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+
+    border: 1px solid white;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background-color: rgb(0, 0, 19);
+    padding: 25px 5%;
+    margin-top: 20px;
+}
+
+.lastfoot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.social {
+    display: flex;
+    gap: 15px;
+}
+
+.social a {
+    text-decoration: none;
+    color: white;
+}
+
+.social a:hover {
+    color: aquamarine;
+}
+
+.copy p {
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    text-align: left;
+}
+
+footer p {
+    text-align: center;
+    color: aliceblue;
+}
+
+footer p a {
+    text-decoration: none;
+    color: aliceblue;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 768px) {
+
+    /* Header */
+
+    header {
+        flex-direction: column;
+        padding: 20px 15px;
+        gap: 20px;
+    }
+
+    header > a {
+        font-size: 34px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        gap: 12px 20px;
+    }
+
+    nav a {
+        font-size: 16px;
+    }
+
+    header button {
+        padding: 9px 14px;
+    }
+
+
+    /* Page heading */
+
+    .skillsbtn {
+        margin-top: 25px;
+    }
+
+    h1 {
+        font-size: 38px;
+    }
+
+    body > p {
+        font-size: 16px;
+        line-height: 1.5;
+        margin-bottom: 30px;
+    }
+
+
+    /* Skills */
+
+    .skillslog {
+        flex-direction: column;
+        width: 90%;
+        gap: 25px;
+    }
+
+    .technical,
+    .tools {
+        width: 100%;
+    }
+
+    .skill {
+        max-width: 100%;
+    }
+
+
+    /* Footer */
+
+    .lastfoot {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .copy p {
+        text-align: center;
+        font-size: 16px;
+    }
+}
+
+/* =========================
+   SMALL PHONES
+========================= */
+
+@media (max-width: 400px) {
+
+    header {
+        padding: 15px 10px;
+    }
+
+    header > a {
+        font-size: 30px;
+    }
+
+    nav ul {
+        gap: 10px 14px;
+    }
+
+    nav a {
+        font-size: 14px;
+    }
+
+    header button {
+        font-size: 14px;
+    }
+
+
+    /* Heading */
+
+    .skillsbtn {
+        font-size: 14px;
+        padding: 7px 12px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    body > p {
+        font-size: 14px;
+    }
+
+
+    /* Cards */
+
+    .skillslog {
+        width: 94%;
+    }
+
+    .technical,
+    .tools {
+        padding: 18px;
+    }
+
+    .skillslog h3 {
+        font-size: 17px;
+    }
+
+
+    /* Skill text */
+
+    .skill-header {
+        font-size: 14px;
+    }
+
+    .progress {
+        height: 8px;
+    }
+
+
+    /* Tools */
+
+    .tools-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+
+    .tools-grid img {
+        width: 45px;
+        height: 45px;
+    }
+
+
+    /* Footer */
+
+    .copy p {
+        font-size: 14px;
+    }
+
+    .social {
+        gap: 12px;
+    }
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <div class="container1">
+        <div class="container2">
+            <a href="{{ url_for('home') }}" class="logo">Cyrus</a>
+            <header>
+                <nav>
+                    <ul>
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="{{ url_for('about')}}">About</a></li>
+                        <li><a href="{{ url_for('project') }}">Projects</a></li>
+                        <li><a href="{{ url_for('skills') }}">Skills</a></li>
+                        <li><a href="{{ url_for('contact_page') }}">Contact</a></li>
+                    </ul>
+                </nav>
+
+                
+            </header>
+        </div>
+
+        <div class="container3">
+            <h1>Hi, I'm Cyrus Elvis Duo</h1>
+            <p>Creative Technoligist || Software Enthusiat || Builder of Digital Experences</p>
+            <div class="btn">
+              <button class="first"><a href="{{ url_for('project') }}">View My Projects</a></button>
+              <button class="second"><a href="{{ url_for('contact_page') }}">Get In Touch</a></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container4">
+        <button class="third"><a href="/static/css/Notes.pdf">Resume</a></button>
+        <h2 class="inab">About Me</h2>
+        <p class="basic">Creative Technoligist || Software Enthusiat || Builder of Digital Experences
+            <br> Hello, my name is Cyrus Elvis Duo. I am a Liberian and currently Information
+            Technology(IT) <br> in India. I am currently a third semester student. My ambition
+            <br> is to become a software developer and IT operator. 
+        </p>
+
+        <div class="container5">
+            <div class="container6">
+                <img src="{{ url_for('static', filename='images/code2.png') }}" alt="Coding" width="100px" height="100px">
+                <p><strong>Coding</strong><br>I enjoy writting codes</p>
+            </div>
+            <div class="container6">
+                <img src="{{ url_for('static', filename='images/design2.png') }}" alt="Design" width="100px" height="100px">
+                <p><strong>Design</strong><br>I create and incorporate impresive <br>designs into my work</p>
+            </div>
+            <div class="container6">
+                <img src="{{ url_for('static', filename='images/ai2.png') }}" alt="AI" width="100px" height="100px">
+                <p><strong>AI</strong><br>I incorporate Artificial intellegence <br>in to my works</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container7">
+        
+        <h2>Featured Projects</h2>
+
+        <div class="container8">
+            <div class="cards">
+                <div class="design">
+                    <img src="{{ url_for('static', filename='images/prime.png') }}" alt="Bella" >
+                    <h4>Bella</h4>
+                    <p>Bella is a resturate website that have many features</p>
+                    <button class="and"><a href="{{ url_for('project') }}">View Project</a></button>
+                    <button class="ad"><a href="{{ url_for('contact_page') }}">Hire Me</a></button>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="design">
+                    <img src="{{ url_for('static', filename='images/prime.png') }}" alt="PrimeCode" >
+                    <h4>PrimeCode</h4>
+                    <p>PrimeCode is a E-Commerse website for selling websites</p>
+                    <button class="and"><a href="{{ url_for('project') }}">View Project</a></button>
+                    <button class="ad"><a href="{{ url_for('contact_page') }}">Hire Me</a></button>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="design">
+                    <img src="{{ url_for('static', filename='images/prime.png') }}" alt="SBS" >
+                    <h4>SBS</h4>
+                    <p>SBS is a website for a university project that is in development.</p>
+                    <button class="and"><a href="{{ url_for('project') }}">View Project</a></button>
+                    <button class="ad"><a href="{{ url_for('contact_page') }}">Hire Me</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="last">
+        <div class="latest">
+            <div>
+                <button><a href="{{ url_for('contact_page') }}">Hire Me</a></button>
+                <h4>Latest Blug Post</h4>
+                <p><strong>Check out my youtube channel</strong><br>E-Commerse website creation </p>
+            </div>
+        </div>
+
+        <div class="connect">
+            <div>
+                <button><a href="{{ url_for('contact_page') }}">Hire Me</a></button>
+                <h4>Let's Connect</h4>
+                <form action="">
+                    <input type="email" placeholder="Enter your email" class="email">
+                    <input type="submit" value="Submit" class="click"> 
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="lastfoot">
+            <div class="copy">
+                <p>&copy; 2026 Cyrus Elvis Duo. All rights reserved.</p>
+            </div>
+            
+            <div class="social">
+                <a href=""><i class="fa-brands fa-github"></i></a>
+                <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/cyrusduojr?stkn=MW1mN28wZ2hpNjQycA%3D%3D&utm_source=qr"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://youtube.com/@cyrusduo4998?si=5wciKP4yhQs4KlPI"><i class="fa-brands fa-youtube"></i></a>
+
+            </div>
+        </div>
+
+        <p>Power By: <a href="primecode.html">PrimeCode</a></p>
+    </footer>
+</body>
+</html>

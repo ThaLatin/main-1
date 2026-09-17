@@ -1,0 +1,605 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    overflow-x: hidden;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.container1{
+    background-image: url("/static/images/cyrus.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
+    background-origin: border-box;
+    background-attachment:fixed;
+    min-height: 400px;
+
+}
+
+.container2{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 5%;
+    flex-wrap: wrap;
+    
+}
+
+.container2 a{
+    text-decoration: none;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 40px;
+    font-weight: bold;
+    color: rgb(214, 213, 213);
+}
+
+nav ul{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+    list-style: none;
+}
+
+.container2 li a{
+    text-decoration: none;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    font-weight: normal;
+    color: rgb(10, 238, 227);
+}
+
+.container2 li a:hover{
+    color: white;
+    transition: all 1.5s ease;
+}
+.container2 li a:active{
+    color:aquamarine;
+}
+
+#get{
+    margin-left: 50px;
+    background-color: rgb(4, 4, 37);
+    border: 2px solid white;
+    border-radius: 6px;
+    color: aliceblue;
+    margin-right: 10px;
+    padding: 8px;
+    opacity: 0.8;
+}
+
+#get:hover{
+    background-color: aquamarine;
+    color: rgb(2, 2, 22);
+    border: 2px solid gold;
+}
+
+.container3 h1 {
+    text-align: center;
+    color: rgb(16, 130, 145);
+    font-family: 'Times New Roman', Times, serif;
+    font-size: clamp(2rem, 6vw, 4.5rem);
+    font-weight: bold;
+    margin: 60px auto 1px;
+    max-width: 1000px;
+    padding: 0 20px;
+}
+
+.container3 p{
+    text-align: center;
+    color: rgb(16, 130, 145);
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.btn{
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.first{
+    background-color: aqua;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.first a{
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.first:hover{
+    background-color: rgb(2, 2, 36);
+    color: wheat;
+    transition: 400ms;
+    border: 1px solid white;
+}
+
+.second{
+    background-color: rgb(3, 29, 29);
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.second a{
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.second:hover{
+    background-color: rgb(223, 223, 238);
+    color: rgb(1, 3, 26);
+    transition: 400ms;
+    border: 1px solid rgb(124, 52, 52);
+}
+
+.container4{
+    background-color: rgb(251, 251, 252);
+}
+
+.third {
+    display: block;
+    margin: 40px auto 10px;
+    background-color: gray;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.third a{
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+}
+
+.third:hover{
+    background-color: rgb(2, 2, 34);
+    transition: 400ms;
+}
+
+.container4 h2{
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 40px;
+    margin-bottom: 1px;
+    margin-top: 1px;
+}
+
+.container4 .basic{
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom: 25px;
+}
+
+.container5 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+.container6 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: min(100%, 300px);
+}
+
+.container6 strong{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    color: rgb(2, 2, 39);
+    align-items: flex-end;
+}
+
+.container6 p{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    align-items: flex-end;
+}
+
+.container7{
+    background-color: rgb(226, 220, 220);
+    margin-bottom: 0;
+    
+}
+
+.fourth{
+   background-color: gray;
+   margin-top: 30px;
+}
+
+.container7 h2{
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 40px;
+    margin-bottom: 6px;
+    margin-top: 12px;
+
+}
+
+.container8 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.cards {
+    background-color: rgb(78, 76, 76);
+    padding: 10px;
+    border-radius: 8px;
+    width: min(100%, 330px);
+}
+
+.cards img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
+
+.cards h4{
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+    margin-bottom: 1px;
+}
+
+.cards p{
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    
+}
+
+.ad{
+    background-color: rgb(78, 76, 76);
+    border: 1px solid white;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.ad:hover{
+    background-color: rgb(6, 245, 165);
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    transition: all 1s ease;
+}
+
+
+.and{
+    background-color: rgb(6, 245, 165);
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.and:hover{
+    background-color: rgb(78, 76, 76);
+    border: 1px solid white;
+    padding: 8px;
+    border-radius: 4px;
+    transition: all 1s ease;
+}
+
+.cards button a{
+    text-decoration: none;
+    text-align: center;
+    color: white;
+
+}
+
+.last {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.latest,
+.connect {
+    width: min(100%, 450px);
+}
+
+.connect{
+    background-color: rgb(0, 0, 19);
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 10px;
+    border-radius: 8px;
+}
+
+.connect button{
+    display: flex;
+    justify-content: center;
+
+    background-color: gray;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.connect button a{
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+}
+
+.connect h4{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 32px;
+    color: rgb(255, 255, 255);
+    margin-bottom: 1px;
+    margin-top: 1px;
+}
+
+.email {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.email {
+    padding: 10px;
+}
+
+.connect form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.click {
+    padding: 10px 20px;
+}
+
+@media (max-width: 480px) {
+    .connect form {
+        flex-direction: column;
+    }
+
+    .click {
+        width: 100%;
+    }
+}
+.click {
+    padding: 10px 20px;
+    background-color: #0dd381;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.click:hover {
+    background-color: #3c4044;
+}
+
+.latest{
+    background-color: rgb(0, 0, 19);
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 10px;
+    border-radius: 8px;
+    
+}
+
+.latest button{
+    display: flex;
+    justify-content: center;
+
+    background-color: gray;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.latest button a{
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+}
+
+.latest h4{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 32px;
+    color: white;
+    margin-bottom: 1px;
+    margin-top: 1px;
+}
+
+.latest strong{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    color: white;
+}
+
+.latest p{
+    background-color: rgb(0, 0, 19);
+    padding: 8px;
+    border-radius: 4px;
+    color: white;
+}
+
+footer {
+    background-color: rgb(0, 0, 19);
+    padding: 25px 5%;
+}
+
+.lastfoot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.social {
+    display: flex;
+    gap: 15px;
+}
+
+.social a {
+    text-decoration: none;
+    color: white;
+}
+
+.social a:hover{
+    color: aquamarine;
+}
+
+.copy p{
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    text-align: left;
+}
+
+@media (max-width: 600px) {
+    .lastfoot {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .copy p {
+        text-align: center;
+    }
+}
+
+footer p{
+    text-align: center;
+    color: aliceblue;
+}
+
+footer p a{
+    text-decoration: none;
+    color: aliceblue;
+}
+
+@media (max-width: 768px) {
+
+    .container1 {
+        min-height: 550px;
+        background-attachment: scroll;
+    }
+
+    .container2 {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .container2 .logo {
+        font-size: 32px;
+    }
+
+    nav ul {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .container2 li a {
+        font-size: 16px;
+    }
+
+    #get {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .container3 h1 {
+        font-size: clamp(2rem, 10vw, 4rem);
+        padding: 0 15px;
+    }
+
+    .container3 p {
+        font-size: 16px;
+        padding: 0 20px;
+        line-height: 1.5;
+    }
+
+    .container4 h2,
+    .container7 h2 {
+        font-size: 32px;
+    }
+
+    .container4 .basic {
+        font-size: 17px;
+        line-height: 1.6;
+        padding: 0 20px;
+    }
+
+    .container5 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container6 {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .container8 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cards {
+        width: min(100%, 350px);
+    }
+
+    .last {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .latest,
+    .connect {
+        width: min(100%, 450px);
+    }
+}
+
+.section-container {
+    width: min(100% - 40px, 1200px);
+    margin-inline: auto;
+}
+

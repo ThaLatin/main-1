@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profolio_projects</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/proje.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+     <div class="head">
+        <header>
+            <a href="{{ url_for('home') }}">Cyrus</a>
+
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('about')}}">About</a></li>
+                    <li><a href="{{ url_for('project') }}">Projects</a></li>
+                    <li><a href="{{ url_for('skills') }}">Skills</a></li>
+                    <li><a href="{{ url_for('contact_page') }}">Contact</a></li>
+                </ul>
+            </nav>
+
+            <button><a href="{{ url_for('contact_page') }}">Get In Touch</a></button>
+        </header>
+        
+    </div>
+
+    <div class="container7">
+
+        <button class="mainb">Projects</button>
+        
+        <h1>My Projects</h1>
+        <p class="mainp">Here are some of the selected projects I've worked on.</p>
+
+        <div class="container8">
+            <div class="cards">
+                <div class="design">
+                    <img src="{{ url_for('static', filename='images/prime.png') }}" alt="Bella" width="300px" height="auto">
+                    <h4>Bella</h4>
+                    <p>Bella is a resturate website that have <br>many features</p>
+                    <button class="and"><a href="{{ url_for('project') }}">View Project</a></button>
+                    <button class="ad"><a href="{{ url_for('contact_page') }}">Hire Me</a></button>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="design">
+                    <img src="{{ url_for('static', filename='images/prime.png') }}" alt="PrimeCode" width="300px" height="auto">
+                    <h4>PrimeCode</h4>
+                    <p>PrimeCode is a E-Commerse website <br>for selling websites</p>
+                    <button class="and"><a href="{{ url_for('project') }}">View Project</a></button>
+                    <button class="ad"><a href="{{ url_for('contact_page') }}">Hire Me</a></button>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="design">
+                    <img src="{{ url_for('static', filename='images/prime.png') }}" alt="SBS" width="300px" height="auto">
+                    <h4>SBS</h4>
+                    <p>SBS is a website for a university <br> project that is in development.</p>
+                    <button class="and"><a href="{{ url_for('project') }}">View Project</a></button>
+                    <button class="ad"><a href="{{ url_for('contact_page') }}">Hire Me</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container7">
+        
+        <h2 class="other">Projects Currently In Development</h2>
+
+        <div class="container8">
+            <div class="cards">
+                <div class="design">
+                    <img src="{{ url_for('static', filename='images/prime.png') }}" alt="Bella" width="300px" height="auto">
+                    <h4>SaveOne</h4>
+                    <p>SaveOne is a charity organization <br>that help special needs kids </p>
+                    <button class="and"><a href="{{ url_for('contact_page') }}">View Project</a></button>
+                    <button class="ad"><a href="contact.html">Hire Me</a></button>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="design">
+                    <img src="{{ url_for('static', filename='images/prime.png') }}" alt="PrimeCode" width="300px" height="auto">
+                    <h4>NUSI</h4>
+                    <p>Nimba Universty Student in India <br>is a student union community in India</p>
+                    <button class="and"><a href="{{ url_for('project') }}">View Project</a></button>
+                    <button class="ad"><a href="{{ url_for('contact_page') }}">Hire Me</a></button>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="design">
+                    <img src="{{ url_for('static', filename='images/prime.png') }}" alt="SBS" width="300px" height="auto">
+                    <h4>RealOne</h4>
+                    <p>RealOne is a animation youtube channel <br>that offer courses online about animations</p>
+                    <button class="and"><a href="{{ url_for('project') }}">View Project</a></button>
+                    <button class="ad"><a href="{{ url_for('contact_page') }}">Hire Me</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="build">
+        <div class="mind">
+            <img src="/images/ai2.png" alt="">
+            <p><strong>Have a project in mind?</strong><br>
+            Let's build something amazing together</p>
+        </div>
+
+        <button><a href="{{ url_for('contact_page') }}">Let's Connect</a></button>
+    </div>
+
+    <div class="last">
+        <div class="latest">
+            <div>
+                <button><a href="{{ url_for('contact_page') }}">Hire Me</a></button>
+                <h4>Latest Blug Post</h4>
+                <p><strong>Check out my youtube channel</strong><br>E-Commerse website creation </p>
+            </div>
+        </div>
+
+        <div class="connect">
+            <div>
+                <button><a href="{{ url_for('contact_page') }}">Hire Me</a></button>
+                <h4>Let's Connect</h4>
+                <form action="">
+                    <input type="email" placeholder="Enter your email" class="email">
+                    <input type="submit" value="Submit" class="click"> 
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="lastfoot">
+            <div class="copy">
+                <p>&copy; 2026 Cyrus Elvis Duo. All rights reserved.</p>
+            </div>
+            
+            <div class="social">
+                <a href=""><i class="fa-brands fa-github"></i></a>
+                <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/cyrusduojr?stkn=MW1mN28wZ2hpNjQycA%3D%3D&utm_source=qr"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://youtube.com/@cyrusduo4998?si=5wciKP4yhQs4KlPI"><i class="fa-brands fa-youtube"></i></a>
+
+            </div>
+        </div>
+
+        <p>Power By: <a href="primecode.html">PrimeCode</a></p>
+    </footer>
+
+</body>
+</html>

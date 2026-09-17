@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Message</title>
+</head>
+<body>
+
+    <h1>Edit Message</h1>
+
+    <form method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <input
+            type="text"
+            name="name"
+            value="{{ message['name'] }}"
+            required
+        >
+
+        <input
+            type="email"
+            name="email"
+            value="{{ message['email'] }}"
+            
+        >
+
+        <input
+            type="text"
+            name="subject"
+            value="{{ message['subject'] }}"
+        >
+
+        <textarea
+            name="message"
+            rows="5"
+        >{{ message['message'] }}</textarea>
+
+        <button type="submit">Save Changes</button>
+
+    </form>
+
+    <a href="/messages">Cancel</a>
+
+</body>
+</html>

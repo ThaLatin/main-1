@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profolio_about</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/skillsstyle.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <div class="head">
+        <header>
+            <a href="{{ url_for('home') }}">Cyrus</a>
+
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('about')}}">About</a></li>
+                    <li><a href="{{ url_for('project') }}">Projects</a></li>
+                    <li><a href="{{ url_for('skills') }}">Skills</a></li>
+                    <li><a href="{{ url_for('contact_page') }}">Contact</a></li>
+                </ul>
+            </nav>
+
+            <button><a href="{{ url_for('contact_page') }}">Get In Touch</a></button>
+        </header>
+        
+    </div>
+
+   
+    <button class="skillsbtn">Skills</button>
+
+    <h1>My Skills</h1>
+    <p>Technologies and tools I work with to bring ideas to life.</p>
+    
+    
+
+    <div class="skillslog">
+        <div class="technical">
+            <h3>Technical Skills</h3>
+            <div class="skill">
+                <div class="skill-header">
+                  <span>HTML</span>
+                  <span>85%</span>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar html"></div>
+                </div>
+            </div>
+
+            <div class="skill">
+                    <div class="skill-header">
+                       <span>CSS</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="progress">
+                       <div class="progress-bar css"></div>
+                    </div>
+            </div>
+
+            <div class="skill">
+                <div class="skill-header">
+                  <span>Javascript</span>
+                  <span>25%</span>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar Javascript"></div>
+                </div>
+            </div>
+
+            <div class="skill">
+                <div class="skill-header">
+                  <span>Python</span>
+                  <span>10%</span>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar python"></div>
+                </div>
+            </div>
+
+            <div class="skill">
+                <div class="skill-header">
+                  <span>React</span>
+                  <span>1%</span>
+                  </div>
+                     <div class="progress">
+                  <div class="progress-bar react"></div>
+                </div>
+            </div>
+
+            <div class="skill">
+               <div class="skill-header">
+                  <span>UI/UX Design</span>
+                  <span>30%</span>
+                  </div>
+                     <div class="progress">
+                  <div class="progress-bar UIdesign"></div>
+                </div>
+            </div>
+
+            <div class="skill">
+               <div class="skill-header">
+                 <span>AI & Machine Learning</span>
+                 <span>2%</span>
+                 </div>
+                     <div class="progress">
+                 <div class="progress-bar Machine"></div>
+               </div>
+            </div>
+        </div>
+        <div class="tools">
+            <h3>Tools & Technologies</h3>
+            <div class="tools-grid">
+                <img src="{{ url_for('static', filename='images/vs-removebg-preview.png') }}" alt="VS code" width="50px" height="auto">
+                <img src="{{ url_for('static', filename='images/git-removebg-preview.png') }}" alt="Git" width="50px" height="auto">
+                <img src="{{ url_for('static', filename='images/github-removebg-preview.png') }}" alt="GitHub" width="50px" height="auto">
+                <img src="{{ url_for('static', filename='images/figma-removebg-preview.png') }}" alt="Figma" width="50px" height="auto">
+            
+            
+                <img src="{{ url_for('static', filename='images/react-removebg-preview.png') }}" alt="React" width="50px" height="auto">
+                <img src="{{ url_for('static', filename='images/node-removebg-preview.png') }}" alt="Node Js" width="50px" height="auto">
+                <img src="{{ url_for('static', filename='images/python-removebg-preview.png') }}" alt="Python" width="50px" height="auto">
+                <img src="{{ url_for('static', filename='images/tailwind-removebg-preview.png') }}" alt="Tailwind" width="50px" height="auto">
+            
+            
+                <img src="{{ url_for('static', filename='images/firebase-removebg-preview.png') }}" alt="Firebase" width="50px" height="auto">
+                <img src="{{ url_for('static', filename='images/mongo-removebg-preview.png') }}" alt="MongoDB" width="50px" height="auto">
+                <img src="{{ url_for('static', filename='images/postgre-removebg-preview.png') }}" alt="PostgraSQL" width="50px" height="auto">
+                <img src="{{ url_for('static', filename='images/OpenAI-removebg-preview.png') }}" alt="OpenAI" width="50px" height="auto">
+            </div>
+       </div>
+    </div>
+    <footer>
+        <div class="lastfoot">
+            <div class="copy">
+                <p>&copy; 2026 Cyrus Elvis Duo. All rights reserved.</p>
+            </div>
+            
+            <div class="social">
+                <a href=""><i class="fa-brands fa-github"></i></a>
+                <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/cyrusduojr?stkn=MW1mN28wZ2hpNjQycA%3D%3D&utm_source=qr"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://youtube.com/@cyrusduo4998?si=5wciKP4yhQs4KlPI"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://wa.me/231778158152?text=Hello%2C%20you%20found%20my%20website!"><i class="fa-brands fa-whatsapp"></i></a>
+
+            </div>
+        </div>
+
+        <p>Power By: <a href="primecode.html">PrimeCode</a></p>
+    </footer>
+
+</body>
+</html>
