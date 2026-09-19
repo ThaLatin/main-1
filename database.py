@@ -1,5 +1,5 @@
 import sqlite3
-from werkzeug.security import generate_password_hash
+
 
 connection = sqlite3.connect("messages.db")
 
@@ -23,33 +23,38 @@ CREATE TABLE IF NOT EXISTS users (
 )
 """)
 
+# Add status column to messages table
+try:
+    cursor.execute("""
+        ALTER TABLE messages ADD COLUMN status TEXT DEFAULT 'unread'
+    """)
+    connection.commit()
+except sqlite3.OperationalError:
+    pass
+
+# Add role column to users table
+try:
+    cursor.execute("""
+        ALTER TABLE users ADD COLUMN role TEXT DEFAULT 'user'
+    """)
+    connection.commit()
+except sqlite3.OperationalError:
+    pass
+
+# Make sure the existing admin account has admin role
 cursor.execute("""
     UPDATE users
     SET role = 'admin'
     WHERE username = 'admin'
 """)
 
-connection.commit()
-
-try:
-    cursor.execute("""
-                 ALTER TABLE users ADD COLUMN role TEXT DEFAULT 'user'
-            """)
-    connection.commit()
-
-except sqlite3.OperationalError:
-    pass
-
-password_hash = generate_password_hash("1234")
-
 cursor.execute("""
-INSERT OR IGNORE INTO users (username, password)
-VALUES (?, ?)
-""", ("admin", password_hash))
-
+CREATE TABLE IF NOT EXISTS login_attempts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL UNIQUE,
+    attempts INTEGER NOT NULL DEFAULT 0,
+    locked_until REAL DEFAULT 0
+)
+""")
 connection.commit()
-
 connection.close()
-
-
-

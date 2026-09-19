@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Message</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+
+<body>
+
+    <h1>View Message</h1>
+
+    <div class="message-details">
+
+        <h2>{{ message["subject"] }}</h2>
+
+        <p>
+            <strong>Name:</strong>
+            {{ message["name"] }}
+        </p>
+
+        <p>
+            <strong>Email:</strong>
+            {{ message["email"] }}
+        </p>
+
+        <p>
+            <strong>Message:</strong>
+            {{ message["message"] }}
+        </p>
+
+        <p>
+            <strong>Status:</strong>
+            {{ message["status"] }}
+        </p>
+
+    </div>
+
+    <br>
+
+    <a href="{{ url_for('messages') }}">← Back to Messages</a>
+
+</body>
+</html>

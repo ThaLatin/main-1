@@ -18,14 +18,71 @@
 
         <p>Welcome, {{ session["username"] }}!</p>
 
-        <p>Total messages: {{ messages|length }}</p>
+       <div class="dashboard-stats">
+            <div class="stat-card">
+                <h3>Total Messages</h3>
+                <p>{{ messages|length }}</p>
+            </div>
 
-        <a href="/logout">Logout</a>
+            <div class="stat-card">
+                <h3>Total Users</h3>
+                <p>{{ total_users }}</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Unread Messages</h3>
+                <p>{{ unread_messages }}</p>
+            </div>
+
+        </div>
+
+        <form action="{{ url_for('logout') }}" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button type="submit">Logout</button>
+        </form>
     </header>
 
     <hr>
 
     <h2>Contact Messages</h2>
+
+    <form action="{{ url_for('messages') }}" method="GET">
+       <input
+        type="text"
+        name="search"
+        placeholder="Search messages..."
+        value="{{ request.args.get('search', '') }}"
+       >
+
+       <button type="submit">Search</button>
+       
+       <a href="{{ url_for('messages') }}">Clear</a>
+    </form>
+
+   <div class="message-filters">
+
+    <a
+        class="{% if not request.args.get('status') %}active-filter{% endif %}"
+        href="{{ url_for('messages', search=request.args.get('search', '')) }}"
+    >
+        All
+    </a>
+
+    <a
+        class="{% if request.args.get('status') == 'unread' %}active-filter{% endif %}"
+        href="{{ url_for('messages', search=request.args.get('search', ''), status='unread') }}"
+    >
+        Unread
+    </a>
+
+    <a
+        class="{% if request.args.get('status') == 'read' %}active-filter{% endif %}"
+        href="{{ url_for('messages', search=request.args.get('search', ''), status='read') }}"
+    >
+        Read
+    </a>
+
+</div>
 
     {% for message in messages %}
         <div>
@@ -46,23 +103,43 @@
                 {{ message["message"] }}
             </p>
 
+            <p>
+                <strong>Status:</strong>
+
+                <span class="status-{{ message['status'] }}">
+                    {{ message["status"] }}
+                </span>
+                
+            </p>
+
             <div class="message-actions">
+
+                <a class="view-button" href="{{ url_for('view_message', message_id=message['id']) }}">
+                    View
+                </a>
                 <a class="edit-button" href="/edit-message/{{ message['id'] }}">
-                      Edit
+                    Edit
                 </a>
 
-                <form action="/delete-message/{{ message['id'] }}" method="POST">
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                    <button class="delete-button" type="submit">
-                      Delete
-                    </button>
-                </form>
+            <form
+                action="/delete-message/{{ message['id'] }}"
+                method="POST"
+                class="delete-form"
+             >
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                <button class="delete-button" type="submit">
+                    Delete
+                </button>
+            </form>
             </div>
         </div>
 
         <hr>
 
     {% endfor %}
+
+    <script src="{{ url_for('static', filename='delete-confirm.js') }}"></script>
 
 </body>
 </html>
