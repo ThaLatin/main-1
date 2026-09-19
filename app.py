@@ -33,6 +33,7 @@ app.config["MAX_CONTENT_LENGTH"] = 1 * 1024 * 1024
 
 csrf = CSRFProtect(app)
 
+
 def initialize_database():
     connection = sqlite3.connect("messages.db")
     cursor = connection.cursor()
@@ -57,6 +58,40 @@ def initialize_database():
     )
     """)
 
+    # Create the admin account from Render environment variables
+    admin_username = os.getenv("ADMIN_USERNAME")
+    admin_password = os.getenv("ADMIN_PASSWORD")
+
+    if admin_username and admin_password:
+        admin_username = admin_username.strip().lower()
+
+        cursor.execute(
+            "SELECT id FROM users WHERE username = ?",
+            (admin_username,)
+        )
+
+        existing_admin = cursor.fetchone()
+
+        password_hash = generate_password_hash(admin_password)
+
+        if existing_admin:
+            cursor.execute(
+                """
+                UPDATE users
+                SET password = ?, role = 'admin'
+                WHERE username = ?
+                """,
+                (password_hash, admin_username)
+            )
+        else:
+            cursor.execute(
+                """
+                INSERT INTO users (username, password, role)
+                VALUES (?, ?, 'admin')
+                """,
+                (admin_username, password_hash)
+            )
+
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS login_attempts (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -69,23 +104,16 @@ def initialize_database():
     connection.commit()
     connection.close()
 
+
 initialize_database()
 
-
-@app.after_request
-def add_security_headers(response):
-    response.headers["X-Content-Type-Options"] = "nosniff"
-    response.headers["X-Frame-Options"] = "SAMEORIGIN"
-    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
-    response.headers["Content-Security-Policy"] = "default-src 'self'; style-src 'self' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com;"
-    response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
-    return response
 
 def get_database():
     connection = sqlite3.connect("messages.db")
     connection.row_factory = sqlite3.Row
     connection.execute("PRAGMA foreign_keys = ON")
     return connection
+
 
 def is_admin():
     if not session.get("logged_in"):
@@ -103,28 +131,48 @@ def is_admin():
 
     connection.close()
 
-    return bool (user and user["role"] == "admin")
+    return bool(user and user["role"] == "admin")
+
+
+@app.after_request
+def add_security_headers(response):
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "SAMEORIGIN"
+    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+    response.headers["Content-Security-Policy"] = (
+        "default-src 'self'; "
+        "style-src 'self' https://cdnjs.cloudflare.com; "
+        "font-src 'self' https://cdnjs.cloudflare.com;"
+    )
+    response.headers["Permissions-Policy"] = (
+        "camera=(), microphone=(), geolocation=()"
+    )
+    return response
 
 
 @app.route("/")
 def home():
     return render_template("index.html")
 
-@app.route("/contact")
-def contact_page():
-    return render_template("contact.html")
 
 @app.route("/about")
 def about():
     return render_template("about.html")
 
-@app.route("/project")
-def project():
-    return render_template("project.html")
 
 @app.route("/skills")
 def skills():
     return render_template("skills.html")
+
+
+@app.route("/project")
+def project():
+    return render_template("project.html")
+
+
+@app.route("/contact")
+def contact_page():
+    return render_template("contact.html")
 
 
 @app.route("/contact", methods=["POST"])
@@ -135,7 +183,7 @@ def contact():
     subject = request.form["subject"].strip()
     message = request.form["message"].strip()
 
-    if not name.strip() or not email.strip():
+    if not name or not email:
         flash("Name and email are required!")
         return redirect(url_for("contact_page"))
 
@@ -146,7 +194,7 @@ def contact():
         flash("Please enter a valid email address!")
         return redirect(url_for("contact_page"))
 
-    if len(message.strip()) > 1000:
+    if len(message) > 1000:
         flash("Message must be 1000 characters or less!")
         return redirect(url_for("contact_page"))
 
@@ -163,7 +211,6 @@ def contact():
         return redirect(url_for("contact_page"))
 
     connection = get_database()
-
     cursor = connection.cursor()
 
     cursor.execute(
@@ -179,9 +226,12 @@ def contact():
 
     return "Your message has been received!"
 
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
+
     if request.method == "POST":
+
         username = request.form["username"].strip().lower()
         password = request.form["password"]
 
@@ -194,7 +244,9 @@ def register():
             return redirect(url_for("register"))
 
         if not re.fullmatch(r"[A-Za-z0-9_]+", username):
-            flash("Username can only contain letters, numbers, and underscores!")
+            flash(
+                "Username can only contain letters, numbers, and underscores!"
+            )
             return redirect(url_for("register"))
 
         if len(password) < 6:
@@ -225,7 +277,7 @@ def register():
             connection.close()
             flash("Username already exists. Please choose another one!")
             return redirect(url_for("register"))
-        
+
         connection.close()
 
         flash("Account created successfully!")
@@ -233,13 +285,15 @@ def register():
 
     return render_template("register.html")
 
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
+
     if request.method == "POST":
+
         username = request.form["username"].strip().lower()
         password = request.form["password"]
 
-        # Check login attempts
         connection = get_database()
         cursor = connection.cursor()
 
@@ -257,15 +311,16 @@ def login():
         else:
             attempts = 0
 
-        # Check lockout
         if attempts >= 5:
+
             lockout_time = attempt_record["locked_until"]
 
             if time.time() < lockout_time:
-                flash("Too many failed login attempts. Please try again later.")
+                flash(
+                    "Too many failed login attempts. Please try again later."
+                )
                 return redirect(url_for("login"))
 
-            # Lockout expired, reset attempts
             attempts = 0
 
             connection = get_database()
@@ -273,10 +328,13 @@ def login():
 
             cursor.execute(
                 """
-                INSERT INTO login_attempts (username, attempts, locked_until)
+                INSERT INTO login_attempts
+                    (username, attempts, locked_until)
                 VALUES (?, 0, 0)
                 ON CONFLICT(username)
-                DO UPDATE SET attempts = 0, locked_until = 0
+                DO UPDATE SET
+                    attempts = 0,
+                    locked_until = 0
                 """,
                 (username,)
             )
@@ -284,7 +342,6 @@ def login():
             connection.commit()
             connection.close()
 
-        # Find user
         connection = get_database()
         cursor = connection.cursor()
 
@@ -297,7 +354,6 @@ def login():
 
         connection.close()
 
-        # Successful login
         if user and check_password_hash(user["password"], password):
 
             connection = get_database()
@@ -319,7 +375,6 @@ def login():
 
             return redirect(url_for("messages"))
 
-        # Failed login
         attempts += 1
 
         lockout_time = 0
@@ -332,7 +387,8 @@ def login():
 
         cursor.execute(
             """
-            INSERT INTO login_attempts (username, attempts, locked_until)
+            INSERT INTO login_attempts
+                (username, attempts, locked_until)
             VALUES (?, ?, ?)
             ON CONFLICT(username)
             DO UPDATE SET
@@ -350,14 +406,20 @@ def login():
 
     return render_template("login.html")
 
-@app.route("/logout", methods=['post'])
+
+@app.route("/logout", methods=["POST"])
 def logout():
+
     session.clear()
+
     flash("You have been logged out")
+
     return redirect(url_for("login"))
+
 
 @app.route("/messages")
 def messages():
+
     if not is_admin():
         flash("You are not authorized to access this page!")
         return redirect(url_for("login"))
@@ -397,6 +459,7 @@ def messages():
     messages = cursor.fetchall()
 
     cursor.execute("SELECT COUNT(*) FROM users")
+
     total_users = cursor.fetchone()[0]
 
     cursor.execute("""
@@ -416,43 +479,14 @@ def messages():
         unread_messages=unread_messages
     )
 
-@app.route("/delete-message/<int:message_id>", methods=["POST"])
-def delete_message(message_id):
-    if message_id <= 0:
-        flash("Message not found")
-        return redirect(url_for("messages"))
-    
-    if not is_admin():
-        flash("You are not authorized to access this page!")
-        return redirect(url_for("login"))
-
-    connection = get_database()
-    cursor = connection.cursor()
-
-    cursor.execute(
-        "DELETE FROM messages WHERE id = ?",
-        (message_id,)
-    )
-
-    
-
-    if cursor.rowcount == 0:
-        connection.close()
-        flash("Message not found")
-        return redirect(url_for("messages"))
-
-    connection.commit()
-    connection.close()
-
-    flash("Message deleted successfully!")
-    return redirect(url_for("messages")) 
 
 @app.route("/view-message/<int:message_id>")
 def view_message(message_id):
+
     if message_id <= 0:
         flash("Message not found.")
         return redirect(url_for("messages"))
-    
+
     if not is_admin():
         flash("You are not authorized to access this page!")
         return redirect(url_for("login"))
@@ -472,7 +506,6 @@ def view_message(message_id):
         flash("Message not found.")
         return redirect(url_for("messages"))
 
-    # Mark the message as read
     cursor.execute(
         """
         UPDATE messages
@@ -490,7 +523,7 @@ def view_message(message_id):
     )
 
     message_data = cursor.fetchone()
-    
+
     connection.close()
 
     return render_template(
@@ -498,12 +531,14 @@ def view_message(message_id):
         message=message_data
     )
 
+
 @app.route("/edit-message/<int:message_id>", methods=["GET", "POST"])
 def edit_message(message_id):
+
     if message_id <= 0:
         flash("Message not found.")
         return redirect(url_for("messages"))
-    
+
     if not is_admin():
         flash("You are not authorized to access this page!")
         return redirect(url_for("login"))
@@ -512,6 +547,7 @@ def edit_message(message_id):
     cursor = connection.cursor()
 
     if request.method == "POST":
+
         name = request.form["name"].strip()
         email = request.form["email"].strip().lower()
         subject = request.form["subject"].strip()
@@ -520,35 +556,48 @@ def edit_message(message_id):
         if not name or not email:
             flash("Name and email are required!")
             connection.close()
-            return redirect(url_for("edit_message", message_id=message_id))
+            return redirect(
+                url_for("edit_message", message_id=message_id)
+            )
 
         try:
             validated_email = validate_email(email)
             email = validated_email.normalized
+
         except EmailNotValidError:
             flash("Please enter a valid email address!")
             connection.close()
-            return redirect(url_for("edit_message", message_id=message_id))
+            return redirect(
+                url_for("edit_message", message_id=message_id)
+            )
 
         if len(message) > 1000:
             flash("Message must be 1000 characters or less!")
             connection.close()
-            return redirect(url_for("edit_message", message_id=message_id))
+            return redirect(
+                url_for("edit_message", message_id=message_id)
+            )
 
         if len(subject) > 200:
             flash("Subject must be 200 characters or less!")
             connection.close()
-            return redirect(url_for("edit_message", message_id=message_id))
+            return redirect(
+                url_for("edit_message", message_id=message_id)
+            )
 
         if len(name) > 100:
             flash("Name must be 100 characters or less!")
             connection.close()
-            return redirect(url_for("edit_message", message_id=message_id))
+            return redirect(
+                url_for("edit_message", message_id=message_id)
+            )
 
         if len(email) > 254:
             flash("Email must be 254 characters or less!")
             connection.close()
-            return redirect(url_for("edit_message", message_id=message_id))
+            return redirect(
+                url_for("edit_message", message_id=message_id)
+            )
 
         cursor.execute(
             """
@@ -563,6 +612,7 @@ def edit_message(message_id):
         connection.close()
 
         flash("Message updated successfully!")
+
         return redirect(url_for("messages"))
 
     cursor.execute(
@@ -576,30 +626,65 @@ def edit_message(message_id):
         flash("Message not found")
         connection.close()
         return redirect(url_for("messages"))
-    
+
     connection.close()
 
     return render_template(
         "edit_message.html",
         message=message_data
-    )  
+    )
+
+
+@app.route("/delete-message/<int:message_id>", methods=["POST"])
+def delete_message(message_id):
+
+    if message_id <= 0:
+        flash("Message not found")
+        return redirect(url_for("messages"))
+
+    if not is_admin():
+        flash("You are not authorized to access this page!")
+        return redirect(url_for("login"))
+
+    connection = get_database()
+    cursor = connection.cursor()
+
+    cursor.execute(
+        "DELETE FROM messages WHERE id = ?",
+        (message_id,)
+    )
+
+    if cursor.rowcount == 0:
+        connection.close()
+        flash("Message not found")
+        return redirect(url_for("messages"))
+
+    connection.commit()
+    connection.close()
+
+    flash("Message deleted successfully!")
+
+    return redirect(url_for("messages"))
+
 
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template("404.html"), 404
 
+
 @app.errorhandler(403)
 def forbidden(error):
     return render_template("403.html"), 403
+
 
 @app.errorhandler(500)
 def internal_server_error(error):
     return render_template("500.html"), 500
 
+
 @app.errorhandler(413)
 def request_too_large(error):
     return render_template("413.html"), 413
-
 
 
 if __name__ == "__main__":
