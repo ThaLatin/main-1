@@ -33,6 +33,44 @@ app.config["MAX_CONTENT_LENGTH"] = 1 * 1024 * 1024
 
 csrf = CSRFProtect(app)
 
+def initialize_database():
+    connection = sqlite3.connect("messages.db")
+    cursor = connection.cursor()
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS messages (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        email TEXT NOT NULL,
+        subject TEXT,
+        message TEXT,
+        status TEXT DEFAULT 'unread'
+    )
+    """)
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT NOT NULL UNIQUE,
+        password TEXT NOT NULL,
+        role TEXT DEFAULT 'user'
+    )
+    """)
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS login_attempts (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT NOT NULL UNIQUE,
+        attempts INTEGER NOT NULL DEFAULT 0,
+        locked_until REAL DEFAULT 0
+    )
+    """)
+
+    connection.commit()
+    connection.close()
+
+initialize_database()
+
 
 @app.after_request
 def add_security_headers(response):
