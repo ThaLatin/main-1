@@ -3,7 +3,8 @@ from flask_wtf.csrf import CSRFProtect
 from werkzeug.security import generate_password_hash, check_password_hash
 from dotenv import load_dotenv
 from email_validator import validate_email, EmailNotValidError
-import sqlite3
+import psycopg2
+import psycopg2.extras
 import os
 import time
 import re
@@ -35,12 +36,12 @@ csrf = CSRFProtect(app)
 
 
 def initialize_database():
-    connection = sqlite3.connect("messages.db")
+    connection = get_database()
     cursor = connection.cursor()
 
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS messages (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id SERIAL PRIMARY KEY,
         name TEXT NOT NULL,
         email TEXT NOT NULL,
         subject TEXT,
@@ -51,14 +52,14 @@ def initialize_database():
 
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id SERIAL PRIMARY KEY,
         username TEXT NOT NULL UNIQUE,
         password TEXT NOT NULL,
         role TEXT DEFAULT 'user'
     )
     """)
 
-    # Create the admin account from Render environment variables
+    # Create or update the admin account
     admin_username = os.getenv("ADMIN_USERNAME")
     admin_password = os.getenv("ADMIN_PASSWORD")
 
@@ -66,7 +67,7 @@ def initialize_database():
         admin_username = admin_username.strip().lower()
 
         cursor.execute(
-            "SELECT id FROM users WHERE username = ?",
+            "SELECT id FROM users WHERE username = %s",
             (admin_username,)
         )
 
@@ -78,8 +79,8 @@ def initialize_database():
             cursor.execute(
                 """
                 UPDATE users
-                SET password = ?, role = 'admin'
-                WHERE username = ?
+                SET password = %s, role = 'admin'
+                WHERE username = %s
                 """,
                 (password_hash, admin_username)
             )
@@ -87,32 +88,38 @@ def initialize_database():
             cursor.execute(
                 """
                 INSERT INTO users (username, password, role)
-                VALUES (?, ?, 'admin')
+                VALUES (%s, %s, 'admin')
                 """,
                 (admin_username, password_hash)
             )
 
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS login_attempts (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id SERIAL PRIMARY KEY,
         username TEXT NOT NULL UNIQUE,
         attempts INTEGER NOT NULL DEFAULT 0,
-        locked_until REAL DEFAULT 0
+        locked_until DOUBLE PRECISION DEFAULT 0
     )
     """)
 
     connection.commit()
+    cursor.close()
     connection.close()
 
 
-initialize_database()
-
-
 def get_database():
-    connection = sqlite3.connect("messages.db")
-    connection.row_factory = sqlite3.Row
-    connection.execute("PRAGMA foreign_keys = ON")
+    database_url = os.getenv("DATABASE_URL")
+
+    if not database_url:
+        raise RuntimeError("DATABASE_URL is not set!")
+
+    connection = psycopg2.connect(
+        database_url,
+        cursor_factory = psycopg2.extras.DictCursor
+    )
     return connection
+
+initialize_database()
 
 
 def is_admin():
@@ -123,7 +130,7 @@ def is_admin():
     cursor = connection.cursor()
 
     cursor.execute(
-        "SELECT role FROM users WHERE username = ?",
+        "SELECT role FROM users WHERE username = %s",
         (session["username"],)
     )
 
@@ -216,7 +223,7 @@ def contact():
     cursor.execute(
         """
         INSERT INTO messages (name, email, subject, message)
-        VALUES (?, ?, ?, ?)
+        VALUES (%s, %s, %s, %s)
         """,
         (name, email, subject, message)
     )
@@ -266,14 +273,14 @@ def register():
             cursor.execute(
                 """
                 INSERT INTO users (username, password)
-                VALUES (?, ?)
+                VALUES (%s, %s)
                 """,
                 (username, password_hash)
             )
 
             connection.commit()
 
-        except sqlite3.IntegrityError:
+        except psycopg2.IntegrityError:
             connection.close()
             flash("Username already exists. Please choose another one!")
             return redirect(url_for("register"))
@@ -298,7 +305,7 @@ def login():
         cursor = connection.cursor()
 
         cursor.execute(
-            "SELECT * FROM login_attempts WHERE username = ?",
+            "SELECT * FROM login_attempts WHERE username = %s",
             (username,)
         )
 
@@ -330,7 +337,7 @@ def login():
                 """
                 INSERT INTO login_attempts
                     (username, attempts, locked_until)
-                VALUES (?, 0, 0)
+                VALUES (%s, 0, 0)
                 ON CONFLICT(username)
                 DO UPDATE SET
                     attempts = 0,
@@ -346,7 +353,7 @@ def login():
         cursor = connection.cursor()
 
         cursor.execute(
-            "SELECT * FROM users WHERE username = ?",
+            "SELECT * FROM users WHERE username = %s",
             (username,)
         )
 
@@ -360,7 +367,7 @@ def login():
             cursor = connection.cursor()
 
             cursor.execute(
-                "DELETE FROM login_attempts WHERE username = ?",
+                "DELETE FROM login_attempts WHERE username = %s",
                 (username,)
             )
 
@@ -389,7 +396,7 @@ def login():
             """
             INSERT INTO login_attempts
                 (username, attempts, locked_until)
-            VALUES (?, ?, ?)
+            VALUES (%s, %s, %s)
             ON CONFLICT(username)
             DO UPDATE SET
                 attempts = excluded.attempts,
@@ -436,10 +443,10 @@ def messages():
     query = """
         SELECT * FROM messages
         WHERE (
-            name LIKE ?
-            OR email LIKE ?
-            OR subject LIKE ?
-            OR message LIKE ?
+            name LIKE %s
+            OR email LIKE %s
+            OR subject LIKE %s
+            OR message LIKE %s
         )
     """
 
@@ -451,7 +458,7 @@ def messages():
     ]
 
     if status:
-        query += " AND status = ?"
+        query += " AND status = %s"
         params.append(status)
 
     cursor.execute(query, params)
@@ -495,7 +502,7 @@ def view_message(message_id):
     cursor = connection.cursor()
 
     cursor.execute(
-        "SELECT * FROM messages WHERE id = ?",
+        "SELECT * FROM messages WHERE id = %s",
         (message_id,)
     )
 
@@ -510,7 +517,7 @@ def view_message(message_id):
         """
         UPDATE messages
         SET status = 'read'
-        WHERE id = ?
+        WHERE id = %s
         """,
         (message_id,)
     )
@@ -518,7 +525,7 @@ def view_message(message_id):
     connection.commit()
 
     cursor.execute(
-        "SELECT * FROM messages WHERE id = ?",
+        "SELECT * FROM messages WHERE id = %s",
         (message_id,)
     )
 
@@ -602,8 +609,8 @@ def edit_message(message_id):
         cursor.execute(
             """
             UPDATE messages
-            SET name = ?, email = ?, subject = ?, message = ?
-            WHERE id = ?
+            SET name = %s, email = %s, subject = %s, message = %s
+            WHERE id = %s
             """,
             (name, email, subject, message, message_id)
         )
@@ -616,7 +623,7 @@ def edit_message(message_id):
         return redirect(url_for("messages"))
 
     cursor.execute(
-        "SELECT * FROM messages WHERE id = ?",
+        "SELECT * FROM messages WHERE id = %s",
         (message_id,)
     )
 
@@ -650,7 +657,7 @@ def delete_message(message_id):
     cursor = connection.cursor()
 
     cursor.execute(
-        "DELETE FROM messages WHERE id = ?",
+        "DELETE FROM messages WHERE id = %s",
         (message_id,)
     )
 
