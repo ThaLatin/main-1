@@ -59,9 +59,9 @@ nav ul{
 .container2 li a{
     text-decoration: none;
     font-family: 'Times New Roman', Times, serif;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: normal;
-    color: rgb(10, 238, 227);
+    color: rgb(252, 165, 3);
 }
 
 .container2 li a:hover{
@@ -530,6 +530,7 @@ footer p a{
 
     .container2 .logo {
         font-size: 32px;
+        color: rgb(255, 174, 0);
     }
 
     nav ul {
@@ -538,7 +539,7 @@ footer p a{
     }
 
     .container2 li a {
-        font-size: 16px;
+        font-size: 20px;
     }
 
     #get {
